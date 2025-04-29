@@ -28,6 +28,9 @@ class OrderAdminController extends ApiController {
         if ($order === false) {
             return $this->failedResponse('This Quantity Not Available In Stock' , 400);
         }
+        if ($order === 'orderEnded') {
+            return $this->failedResponse('Order Status Cant Updated' , 400);
+        }
         return $this->successResponse('Order Status Updated Successfully' , $order , 200);
     }
 }

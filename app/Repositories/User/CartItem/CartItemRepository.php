@@ -2,12 +2,11 @@
 
 namespace App\Repositories\User\CartItem;
 
-use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
-class CartItemRepository extends Controller {
+class CartItemRepository {
     public function addToCart ($id , $data) {
         $item = CartItem::where('user_id' , Auth::id())->where('product_id' , $id)->first();
         if ($item) {
@@ -17,7 +16,7 @@ class CartItemRepository extends Controller {
     }
 
     public function showCart () {
-        return CartItem::where('user_id' , Auth::id())->with('product')->get();
+        return CartItem::where('user_id' , Auth::id())->get();
     }
 
     public function updateCart ($id) {
